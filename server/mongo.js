@@ -1,3 +1,4 @@
+//инициализация монго 
 let MongoClient = require('mongodb').MongoClient;
 let Promise = require('promise'); // jshint ignore:line
 
