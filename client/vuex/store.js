@@ -7,6 +7,7 @@ export default new Vuex.Store({
         wordEntries: [],
         newWordEntry: {word: "", username: "", comment: ""},
         selectedWordEntry: {},
+        connect: false
     },
     mutations: {
         SET_WORD_ENTRIES(state, wordEntries) {
@@ -21,11 +22,17 @@ export default new Vuex.Store({
         DESELECT_WORD_ENTRY(state) {
             state.selectedWordEntry = {};
         },
-        ADD_WORD_ENTRY(state) {
-            state.wordEntries.push(state.newWordEntry);
+        ADD_WORD_ENTRY(state, wordEntry) {
+            state.wordEntries.push(wordEntry);
         },
         CLEAR_NEW_WORD_ENTRY(state){
             state.newWordEntry = {word: "", username: "", comment: ""};
+        },
+
+        /* Сокеты */
+
+        SOCKET_CONNECT: (state,  status ) => {
+            state.connect = true;
         }
     },
     actions: {
@@ -45,17 +52,26 @@ export default new Vuex.Store({
         setNewWordEntry({commit}, wordEntry){
             commit('SET_NEW_WORD_ENTRY', wordEntry)
         },
-        addWordEntry({commit, state}){
+        addWordEntry({commit, state}) {
             let words = Vue.resource("api/words/");
-            words.save(state.newWordEntry).then((res) => {
-                commit('ADD_WORD_ENTRY');
-                commit('CLEAR_NEW_WORD_ENTRY');
-
-            });
+            return words.save(state.newWordEntry).then(
+                (res) => {
+                    commit('ADD_WORD_ENTRY', state.newWordEntry);
+                    commit('CLEAR_NEW_WORD_ENTRY');
+                }
+            );
         },
         clearNewWordEntry({commit}){
             commit('CLEAR_NEW_WORD_ENTRY');
+        },
+
+        /* Сокеты */
+
+        socket_newWord({commit, state}, message){
+            console.log(message);
+            commit('ADD_WORD_ENTRY', message.message);
         }
+
     },
     getters: {
         newWordEntry: state => state.newWordEntry,

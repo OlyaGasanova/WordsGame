@@ -37,6 +37,7 @@
         },
         methods: {
             onSelect(wordEntry) {
+                //this.$socket.emit('new word', wordEntry);
                 this.$store.dispatch("selectWordEntry", wordEntry);
             }
         },

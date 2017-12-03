@@ -24,8 +24,6 @@
                 return this.$store.getters.selectedWordEntry
             }
         }
-
-
     }
 </script>
 
