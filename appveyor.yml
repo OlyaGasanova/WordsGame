@@ -33,7 +33,7 @@ deploy:
     description: '$(APPVEYOR_REPO_TAG_NAME)'
 
     auth_token:
-        secure: 6994bba2aa433bc6eca0a66841e0661a990eb30a
+        secure: <6994bba2aa433bc6eca0a66841e0661a990eb30a>
 
     artifact: /.*\.pkg/
     force_update: true 
