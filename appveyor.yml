@@ -14,13 +14,12 @@ test_script:
   - npm --version
   - npm test
 
-# Don't actually build.
+
 build: off
 
 test: off
 
 services:
   - mongodb
-  
 before_deploy:
   - PowerShell .\InstallSelfSignedCert.ps1
