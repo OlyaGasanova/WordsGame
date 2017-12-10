@@ -30,7 +30,7 @@ deploy:
     provider: GitHub                         
     description: '$(APPVEYOR_REPO_TAG_NAME)'
 
-    auth_token: xb8ZlEwLpMH3O7jLJzu3YA/mY0DS4qhtjyexFfFqRmLhsNHczC67RoluWQFiuuge
+    auth_token: 1e7404c00a459dda4904d019f52273e0f4de97dd
 
     artifact: /.*\/
     force_update: true 
