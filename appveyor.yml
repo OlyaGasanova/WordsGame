@@ -17,11 +17,6 @@ test_script:
 # Don't actually build.
 build: off
 
-before_deploy:
-  - PowerShell .\InstallSelfSignedCert.ps1
-=======
-build: off
-
 test: off
 
 services:
