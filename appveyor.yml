@@ -33,7 +33,7 @@ deploy:
     auth_token:
       secure: 'W5TNL7xbdAbA+rYkAECXJ7OTFknNd7s3zkhssB4PB/Yv3TLCSArtRT1K/PlIShNf'
     
-    artifact: /.*\/
+    artifact: /.*\.zip/
     force_update: true 
 
     on:
