@@ -23,3 +23,20 @@ services:
   - mongodb
 before_deploy:
   - PowerShell .\InstallSelfSignedCert.ps1
+artifacts:
+    - path: file1.pkg
+    - path: file2.pkg
+    - ...
+
+deploy:
+    provider: GitHub                         
+    description: '$(APPVEYOR_REPO_TAG_NAME)'
+
+    auth_token:
+        secure: 6994bba2aa433bc6eca0a66841e0661a990eb30a
+
+    artifact: /.*\.pkg/
+    force_update: true 
+
+    on:
+        appveyor_repo_tag: true 
