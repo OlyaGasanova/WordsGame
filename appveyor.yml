@@ -24,7 +24,7 @@ services:
 before_deploy:
   - PowerShell .\InstallSelfSignedCert.ps1
 artifacts:
-    - path: file1.pkg
+    - path: 
 
 deploy:
     provider: GitHub                         
@@ -33,7 +33,7 @@ deploy:
     auth_token:
         secure: g3esyoKixmjCE1S+Lx3zUdbYPacwOHRePMEydE0FVzVaXC4LqBoYcJpAoT/j6lLd
 
-    artifact: /.*\.pkg/
+    artifact: /.*\/
     force_update: true 
 
     on:
