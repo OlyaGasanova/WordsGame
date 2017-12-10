@@ -24,7 +24,7 @@ services:
 before_deploy:
   - PowerShell .\InstallSelfSignedCert.ps1
 artifacts:
-    - path: 
+    - path: /
 
 deploy:
     provider: GitHub                         
