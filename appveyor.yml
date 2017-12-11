@@ -8,6 +8,7 @@ environment:
 install:
   - ps: Install-Product node $env:nodejs_version
   - npm install
+  - npm install --save-dev should
 
 before_test:
   - PowerShell .\Install-MongoDb-On-AppVeyor.ps1
