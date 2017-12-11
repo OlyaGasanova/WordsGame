@@ -1,7 +1,7 @@
 const config = {
     serve: {
         host: 'localhost',
-        port: 8080
+        port: 8081
     },
     mongo: {
             host: 'localhost',

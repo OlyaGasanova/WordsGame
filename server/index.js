@@ -20,7 +20,7 @@ app.use(express.static(__dirname + '/../dist'));
 function start() {
 
     app.listen(8081, 'localhost');
-    console.log('Listening on port ' + 8080 + '...');
+    console.log('Listening on port ' + 8081 + '...');
     let smt  = require('./users_room/users_room');
     smt.init();
 }

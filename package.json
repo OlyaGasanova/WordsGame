@@ -4,10 +4,8 @@
   "description": "cool app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --watch",
-    "start": "SET NODE_ENV=dev && node server/index.js",
-    "test": "mocha --timeout 10000"
+    "start": "SET NODE_ENV=dev && node server/index.js"
   },
   "devDependencies": {
     "babel-core": "^6.1.2",
@@ -16,16 +14,16 @@
     "babel-preset-es2015": "^6.1.2",
     "babel-preset-stage-0": "^6.1.2",
     "babel-runtime": "^5.8.0",
-    "webpack": "^1.12.2",
-    "css-loader": "^0.23.0",
-    "style-loader": "^0.13.0",
-    "vue-loader": "^7.3.0",
-    "vue-html-loader": "^1.0.0",
-    "url-loader": "^0.5.8",
-    "should": "*",
     "chai": "^3.5.0",
     "chai-http": "^2.0.1",
-    "mocha": "^2.4.5"
+    "css-loader": "^0.23.0",
+    "mocha": "^2.4.5",
+    "should": "^13.1.3",
+    "style-loader": "^0.13.0",
+    "url-loader": "^0.5.8",
+    "vue-html-loader": "^1.0.0",
+    "vue-loader": "^7.3.0",
+    "webpack": "^1.12.2"
   },
   "author": "Olga",
   "license": "ISC",

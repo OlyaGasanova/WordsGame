@@ -4,6 +4,7 @@ let express = require('express');
 let router = express.Router();
 let mongo = require('../mongo');
 
+
 router.post("/sum", (req, res) => {
     var result = parseInt(req.body.first) + parseInt(req.body.second);
         res.status(200).json(result);
@@ -40,3 +41,4 @@ router.post("/", (req, res) => {
     });
 });
 module.exports = router;
+
