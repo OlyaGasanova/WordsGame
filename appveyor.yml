@@ -8,7 +8,9 @@ environment:
 install:
   - ps: Install-Product node $env:nodejs_version
   - npm install
-  - npm start
+
+before_test:
+  - PowerShell .\Install-MongoDb-On-AppVeyor.ps1
 
 test_script:
   - node --version
@@ -22,8 +24,7 @@ test: npm test
 
 services:
   - mongodb
-before_deploy:
-  - PowerShell .\InstallSelfSignedCert.ps1
+
 artifacts:
     - path: /
 
