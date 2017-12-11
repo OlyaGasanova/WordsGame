@@ -8,7 +8,7 @@ environment:
 install:
   - ps: Install-Product node $env:nodejs_version
   - npm install
-  - npm run rebuild-tests
+  - npm start
 
 test_script:
   - node --version
