@@ -6,10 +6,6 @@ let express = require('express');
 let mongo = require('../mongo');
 let config = require('../config');
 
-function  connect(fn) {
-    mongo.connect(config.mongo).then(fn(done()));
-}
-
 function test(option, req) {
 
 
