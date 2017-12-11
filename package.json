@@ -4,6 +4,7 @@
   "description": "cool app",
   "main": "index.js",
   "scripts": {
+    "test": "mocha --timeout 30000",
     "build": "webpack --watch",
     "start": "SET NODE_ENV=dev && node server/index.js"
   },

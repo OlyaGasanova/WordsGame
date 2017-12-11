@@ -1,56 +1,52 @@
 process.env.NODE_ENV = 'test';
 
-//let mongoose = require("mongoose");
-//let word = require('../server/models/book');
-
 //Подключаем dev-dependencies
 let chai = require('chai');
 let chaiHttp = require('chai-http');
 let should = chai.should();
-
+let server = require('../server/words/wordstest')
 chai.use(chaiHttp);
-//Наш основной блок
-describe('Words', function () {
 
-    /*
-     * Тест для /GET
-     */
-    describe('/GET words', () => {
-        it('it should GET all the words', (done) => {
-            chai.request("localhost:8081")
-                .get('/api/words')
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a('array');
-                    res.body.length.should.not.be.eql(0);
-                    done();
-                });
+
+describe('Words', function() {
+
+    describe('calculate me!', function() {
+        it('it should return 25', function () {
+            var req={body:{
+                first:12,
+                second:13
+            }};
+            server.test(0,req).should.be.eql(25);
+
         });
     });
 
-    describe('/POST word', () => {
-        it('it should not post a word "укмапкеи"', (done) => {
-            chai.request("localhost:8081")
-                .post('/api/words?name=оля&word=укмапкеи')
-                .end((err, res) => {
-                    res.should.have.status(404);
-                    done();
-                });
+
+    describe('GET words',  function() {
+        it('it should GET all the words',  function () {
+            var req={body:{}};
+            server.test(2,req).should.be.a('array');
+            server.test(2,req).length.should.not.be.eql(0);
+
         });
     });
 
-    describe('/POST word', () => {
-        it('it should return 25"', (done) => {
-            chai.request("localhost:8081")
-                .post('/api/words/sum')
-                .set('content-type', 'application/x-www-form-urlencoded')
-                .send({first: 13, second :12})
-                .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.eql(25);
-                    done();
-                });
+
+    describe('POST word',  function() {
+        it('it should not post a word "укмапкеи"', function () {
+            var req={body:{name:'оля',word:'укмапкеи'}};
+            server.test(1,req).should.be.eql("Word not found in dictionary")
+        });
+    });
+
+
+    describe('POST word',  function() {
+        it('it should not post a word "ржавчина"', function (){
+            var req={body:{name:'оля',word:'ржавчина'}};
+            server.test(1,req).should.be.eql("Word already in chain")
         });
     });
 
 });
+
+
