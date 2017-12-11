@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --watch",
-    "start": "node server/index.js"
+    "start": "SET NODE_ENV=dev && node server/index.js",
+    "test": "mocha --timeout 10000"
   },
   "devDependencies": {
     "babel-core": "^6.1.2",
@@ -20,7 +21,11 @@
     "style-loader": "^0.13.0",
     "vue-loader": "^7.3.0",
     "vue-html-loader": "^1.0.0",
-    "url-loader": "^0.5.8"
+    "url-loader": "^0.5.8",
+    "should": "*",
+    "chai": "^3.5.0",
+    "chai-http": "^2.0.1",
+    "mocha": "^2.4.5"
   },
   "author": "Olga",
   "license": "ISC",

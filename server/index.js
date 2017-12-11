@@ -25,6 +25,7 @@ function start() {
     smt.init();
 }
 
+
 let apiRouter = express.Router();
 app.use('/api', apiRouter);
 

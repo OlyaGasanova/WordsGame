@@ -4,12 +4,19 @@ let express = require('express');
 let router = express.Router();
 let mongo = require('../mongo');
 
+router.post("/sum", (req, res) => {
+    var result = parseInt(req.body.first) + parseInt(req.body.second);
+        res.status(200).json(result);
+});
+
+
 router.get("/", (req, res) => {
     let collection = mongo.db.collection('wordChain');
     collection.find({}, {_id: false}).toArray(function(err, docs) {
         res.status(200).json(docs);
     });
 });
+
 
 router.post("/", (req, res) => {
     let collection = mongo.db.collection('wordChain');
