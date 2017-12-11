@@ -39,4 +39,4 @@ function test(option, req) {
         });
     }
 }
- module.exports = {test, connect};
+ module.exports = {test};
