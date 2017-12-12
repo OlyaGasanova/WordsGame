@@ -1,0 +1,21 @@
+language: node_js
+node_js:
+ - "node"
+ 
+install:
+  - ps: Install-Product node $env:nodejs_version
+  - npm install
+  - npm install --save-dev should
+  - npm install --save-dev expect
+  
+deploy:
+  provider: releases
+  user: "OlyaGasanova"
+  password: "lifeonmars123"
+  file: /.*\.zip/
+  skip_cleanup: true
+  on:
+    tags: false
+	
+artifacts:
+    - path: /
