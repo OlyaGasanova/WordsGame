@@ -35,7 +35,7 @@ function test(option, req) {
     }
 
     if (option==2){
-        var array = fs.readFileSync('inchain.json','utf-8').toString().split('\r\n');
+        var array = fs.readFileSync('inchain.json','utf-8').toString().split('\n');
         var docs=[];
         array.forEach(function(item, i, array) {
             item = JSON.parse(item);
