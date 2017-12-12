@@ -4,11 +4,12 @@ process.env.NODE_ENV = 'test';
 let chai = require('chai');
 let chaiHttp = require('chai-http');
 let should = chai.should();
+let expect = chai.expect;
 let server = require('../server/words/wordstest')
 chai.use(chaiHttp);
 
 
-describe('Words', function() {
+describe('Words 2', function() {
 
     describe('calculate me!', function() {
         it('it should return 25', function () {
@@ -34,16 +35,17 @@ describe('Words', function() {
 
     describe('POST word',  function() {
         it('it should not post a word "укмапкеи"', function () {
-            var req={body:{name:'оля',word:'укмапкеи'}};
-            server.test(1,req).should.be.eql("Word not found in dictionary")
+            var req={body:{word:"укмапкеи", username:"оля"}};
+            expect(server.test(1,req)).to.include("Word not found in dictionary");
+
         });
     });
 
 
     describe('POST word',  function() {
         it('it should not post a word "ржавчина"', function (){
-            var req={body:{name:'оля',word:'ржавчина'}};
-            server.test(1,req).should.be.eql("Word already in chain")
+            var req={body:{word:"dragon", username:"оля"}};
+           expect(server.test(1,req)).to.include('Word already in chain');
         });
     });
 

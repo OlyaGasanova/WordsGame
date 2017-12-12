@@ -3,6 +3,8 @@
 let express = require('express');
 let router = express.Router();
 let mongo = require('../mongo');
+let fs = require('fs');
+var words = [];
 
 
 router.post("/sum", (req, res) => {
@@ -12,33 +14,68 @@ router.post("/sum", (req, res) => {
 
 
 router.get("/", (req, res) => {
-    let collection = mongo.db.collection('wordChain');
-    collection.find({}, {_id: false}).toArray(function(err, docs) {
-        res.status(200).json(docs);
+    var array = fs.readFileSync('inchain.json','utf-8').toString().split('\r\n');
+    var docs=[];
+    array.forEach(function(item, i, array) {
+        item = JSON.parse(item);
+        docs.push(item);
     });
+    res.status(200).json(docs);
 });
 
 
 router.post("/", (req, res) => {
-    let collection = mongo.db.collection('wordChain');
-    let dictionary = mongo.db.collection('wordDict');
 
-    dictionary.findOne({"word": req.body.word}, (err, result) => {
-        if (!result) {
-            res.status(404).json("Word not found in dictionary");
-            return;
+    console.log("   ;(((");
+    var data = fs.readFileSync("inchain.json", 'utf8');  // function (err, data) {
+        //if (err)  console.log("   ;(((");
+        console.log(data + req.body.word + data.indexOf(req.body.word));
+        if(data.indexOf(req.body.word) >= 0){
+            console.log("Already in dictionary");
+            res.status(404).json("Word already in chain");
         }
-        collection.findOne({"word": req.body.word}, (err, result) => {
-            if (result) {
-                res.status(404).json("Word already in chain");
-                return;
-            }
-            collection.insertOne(req.body).then((result) => {
-                //require('../users_room/users_room').addWord(req.body);
-                res.status(200).json(result);
-            })
-        })
-    });
+
+
+    var data =fs.readFileSync("allwords.txt", 'utf8');//, function (err, data) {
+        if(data.indexOf(req.body.word) >= 0){
+        }
+        else res.status(404).json("Word not found in dictionary");
+
+
+    fs.appendFileSync('inchain.json', "\r\n"+"{\"word\":\""+req.body.word+"\"}");//req.word);
 });
+
+
+
+function readLines(input, func) {
+    var remaining = '';
+
+    input.on('data', function(data) {
+        remaining += data;
+        var index = remaining.indexOf('\n');
+        var last  = 0;
+        while (index > -1) {
+            var line = remaining.substring(last, index);
+            last = index + 1;
+            func(line);
+            index = remaining.indexOf('\n', last);
+        }
+
+        remaining = remaining.substring(last);
+    });
+
+    input.on('end', function() {
+        if (remaining.length > 0) {
+            func(remaining);
+        }
+    });
+}
+
+
+function func(data) {
+    words.push(data);
+}
+
+
 module.exports = router;
 
