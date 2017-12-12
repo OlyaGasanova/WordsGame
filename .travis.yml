@@ -1,7 +1,11 @@
 language: node_js
 node_js:
  - "node"
- 
+
+environment:
+  nodejs_version: "6"
+
+
 install:
   - ps: Install-Product node $env:nodejs_version
   - npm install
