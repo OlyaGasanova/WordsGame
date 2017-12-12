@@ -16,6 +16,11 @@ deploy:
   skip_cleanup: true
   on:
     tags: false
-	
+    
 artifacts:
     - path: /
+
+test_script:
+  - node --version
+  - npm --version
+  - npm test    
